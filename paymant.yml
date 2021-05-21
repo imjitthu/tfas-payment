@@ -1,0 +1,10 @@
+- name: Setup RoboShop Project
+  hosts: all
+  vars:
+    DOMAIN: jithendar.com
+  become: yes
+  
+  tasks:
+    - name: Load paymant Role
+      import_role:
+        name: paymant

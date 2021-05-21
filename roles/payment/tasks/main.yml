@@ -1,0 +1,36 @@
+- name: User App user
+  user:
+    name: roboshop
+    comment: RoboShop user
+
+- name: Make {{COMPONENT}} Directory
+  file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: directory
+
+- name: Download Repo files
+  copy:
+    src: files/
+    dest: /home/roboshop/{{COMPONENT}}
+
+- name: Install Python Packages with requirements.txt file
+  shell: |
+    cd /home/roboshop/{{COMPONENT}}
+    pip3 install -r requirements.txt
+
+# - name: Install Python Packages
+#   pip:
+#    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+#    executable: pip-3
+
+- name: Update the roboshop user and group id in payment.ini file
+  template:
+   src: payment.service 
+   dest: /etc/systemd/system/payment.service
+
+- name: Start Payment Services
+  systemd:
+   daemon_reload: yes
+   enabled: yes
+   state: restarted
+   name: payment 
