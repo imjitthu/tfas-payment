@@ -7,7 +7,7 @@ pipeline { //pipeline
         stage ('Installing paymant Server') { //paymant stage
             steps { //paymant steps
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awskey', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    git 'https://github.com/imjitthu/tfas-paymant.git'
+                    git 'https://github.com/imjitthu/tfas-payment.git'
                     //sh 'terraform destroy -auto-approve'
                     sh'terraform init'
                     sh 'terraform apply -auto-approve'
