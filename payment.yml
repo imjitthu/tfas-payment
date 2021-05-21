@@ -5,6 +5,6 @@
   become: yes
   
   tasks:
-    - name: Load paymant Role
+    - name: Load payment Role
       import_role:
         name: payment
