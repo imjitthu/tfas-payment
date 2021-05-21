@@ -7,4 +7,4 @@
   tasks:
     - name: Load paymant Role
       import_role:
-        name: paymant
+        name: payment
