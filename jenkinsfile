@@ -10,7 +10,7 @@ pipeline {
                     sh 'terraform init'
                     sh 'terraform plan'
                     } 
-            ansiblePlaybook credentialsId: 'DevOps321', installation: 'ansibletool', inventory: 'paymant_inv', playbook: 'paymant.yml'
+            ansiblePlaybook credentialsId: 'DevOps321', installation: 'ansibletool', inventory: 'paymant_inv', playbook: 'payment.yml'
                 } 
             } 
         } 
