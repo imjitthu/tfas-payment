@@ -9,7 +9,7 @@ pipeline {
                }
 
     environment {
-        tfaction = "terraform ${params.tfaction}"
+        tfaction = "${params.tfaction}"
         invfile  = "payment_inv"
         playbook = "payment.yml"
                 }
