@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "terraform-state-rs-practice"
-    key    = "rs-instances/paymant.tfstate"
+    key    = "rs-instances/payment.tfstate"
     region = "us-east-1"
   }
 }
