@@ -3,7 +3,7 @@ locals {
   key_path = "test.pem"
 }
 
-resource "aws_instance" "paymant" {
+resource "aws_instance" "payment" {
   # aws_spot_instabce_request for spot instance
   ami = data.aws_ami.ami.id
   instance_type = "${var.INSTANCE_TYPE}"
@@ -14,7 +14,7 @@ resource "aws_instance" "paymant" {
   }
 
 connection {
-  host = aws_instance.paymant.public_ip
+  host = aws_instance.payment.public_ip
   type = "ssh"
   #private_key = file("${local.key_path}") read private_key (PEM) from file
   user = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["SSH_USER"]
@@ -29,8 +29,8 @@ provisioner "remote-exec" {
 }
 
 provisioner "local-exec" {
-  command = "echo ${aws_instance.paymant.public_ip} > payment_inv"
-  #command = "ansible-playbook -i ${aws_instance.paymant.public_ip}, --private-key ${local.key_path} ${var.COMPONENT}.yml"
+  command = "echo ${aws_instance.payment.public_ip} > payment_inv"
+  #command = "ansible-playbook -i ${aws_instance.payment.public_ip}, --private-key ${local.key_path} ${var.COMPONENT}.yml"
   #echo $IP component=${component} ansible_user=root ansible_password=DevOps321 >>inv
 }
 }
