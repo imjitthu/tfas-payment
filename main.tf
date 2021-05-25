@@ -40,5 +40,5 @@ resource "aws_route53_record" "jithendar" {
   type          = "A"
   ttl           = "300"
   zone_id       = data.aws_route53_zone.jithendar.zone_id
-  records       = [aws_instance.payment_inv.public_ip]
+  records       = [aws_instance.payment.public_ip]
 }
